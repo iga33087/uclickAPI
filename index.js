@@ -7,6 +7,7 @@ const  lib = require('./lib/index.js')
 
 app.use(cors());
 app.use(bodyParser.json())
+const port = process.env.PORT || 3000;
 
 app.all('/*', function(req, res, next){
   //console.log('all',req)
@@ -97,4 +98,4 @@ app.delete('/Article', async function (req, res) {
   res.send(data)
 })
 
-app.listen(80)
+app.listen(port)
