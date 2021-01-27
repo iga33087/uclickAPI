@@ -74,7 +74,7 @@ app.delete('/Mail', async function (req, res) {
 })
 
 app.get('/Article', async function (req, res) {
-  let data=await lib.getArticle()
+  let data=await lib.getArticle(req.query)
   res.send(data)
 })
 
