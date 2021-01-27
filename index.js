@@ -4,14 +4,17 @@ const requestIp = require('request-ip');
 const bodyParser = require('body-parser')
 const app = express()
 const  lib = require('./lib/index.js')
-
-app.use(cors());
-app.use(bodyParser.json())
 const port = process.env.PORT || 3000;
+app.use(cors());
+app.use(bodyParser.json({limit : '2100000kb'}));
 
 app.all('/*', function(req, res, next){
   //console.log('all',req)
   next()
+})
+
+app.get('/', async function (req, res) {
+  res.send("v1")
 })
 
 app.post('/login', async function (req, res) {
@@ -36,7 +39,7 @@ app.get('/ProjectById', async function (req, res) {
   let data=await lib.getProjectById(req.query)
   res.send(data)
 })
- 
+
 app.post('/Project', async function (req, res) {
   let data=await lib.postProject(req.body)
   res.send(data)
