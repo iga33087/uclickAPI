@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json({limit : '2100000kb'}));
 
 app.all('/*', function(req, res, next){
-  //console.log('all',req)
+  console.log('all')
   next()
 })
 
@@ -98,6 +98,21 @@ app.put('/Article', async function (req, res) {
 
 app.delete('/Article', async function (req, res) {
   let data=await lib.deleteArticle(req.query)
+  res.send(data)
+})
+
+app.get('/Tag',async function (req, res) {
+  let data=await lib.getTag()
+  res.send(data)
+})
+
+app.post('/Object',async function (req, res) {
+  let data=await lib.postByObj('article',req.body)
+  res.send(data)
+})
+
+app.put('/Object',async function (req, res) {
+  let data=await lib.putByObj('article',req.body,req.body.id)
   res.send(data)
 })
 
