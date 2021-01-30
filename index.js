@@ -23,6 +23,12 @@ app.post('/login', async function (req, res) {
   res.send(data)
 })
 
+app.get('/testToken', async function (req, res) {
+  console.log('/testToken')
+  let data=await lib.testToken(req)
+  res.send(data)
+})
+
 app.post('/userInfoByToken', async function (req, res) {
   console.log(req.headers.token)
   let data=await lib.userInfoByToken(req.headers.token)
@@ -41,7 +47,10 @@ app.get('/ProjectById', async function (req, res) {
 })
 
 app.post('/Project', async function (req, res) {
-  let data=await lib.postProject(req.body)
+  let data=""
+  if(!await lib.userInfoByToken(req.headers.token)) data={success:false} 
+  else data=await lib.postProject(req.body)
+  console.log(111,data)
   res.send(data)
 })
 
@@ -103,6 +112,27 @@ app.delete('/Article', async function (req, res) {
 
 app.get('/Tag',async function (req, res) {
   let data=await lib.getTag()
+  res.send(data)
+})
+
+app.get('/TagById', async function (req, res) {
+  let data=await lib.getTagById(req.query)
+  res.send(data)
+})
+
+
+app.post('/Tag',async function (req, res) {
+  let data=await lib.postByObj('tag',req.body)
+  res.send(data)
+})
+
+app.put('/Tag',async function (req, res) {
+  let data=await lib.putByObj('tag',req.body,req.body.id)
+  res.send(data)
+})
+
+app.delete('/Tag',async function (req, res) {
+  let data=await lib.deleteByObj('tag',req.query)
   res.send(data)
 })
 
