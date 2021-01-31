@@ -90,6 +90,11 @@ app.get('/Article', async function (req, res) {
   res.send(data)
 })
 
+app.get('/ArticleByObj', async function (req, res) {
+  let data=await lib.getArticleByObj(req.query)
+  res.send(data)
+})
+
 app.get('/ArticleById', async function (req, res) {
   let data=await lib.getArticleById(req.query)
   res.send(data)
