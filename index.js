@@ -151,6 +151,11 @@ app.put('/Object',async function (req, res) {
   res.send(data)
 })
 
+app.get('/limt',async function (req, res) {
+  let data=await lib.limt(req.query)
+  res.send(data)
+})
+
 app.listen(port,()=> {
   console.log(port)
 })
