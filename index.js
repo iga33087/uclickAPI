@@ -120,6 +120,11 @@ app.get('/Tag',async function (req, res) {
   res.send(data)
 })
 
+app.get('/TagByProjectId',async function (req, res) {
+  let data=await lib.getTagByProjectId(req.query)
+  res.send(data)
+})
+
 app.get('/TagById', async function (req, res) {
   let data=await lib.getTagById(req.query)
   res.send(data)
