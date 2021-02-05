@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json({limit : '2100000kb'}));
 
 app.all('/*', function(req, res, next){
-  console.log('all')
+  //console.log('all')
   next()
 })
 
@@ -18,25 +18,25 @@ app.get('/', async function (req, res) {
 })
 
 app.post('/login', async function (req, res) {
-  console.log(req.body)
+  //console.log(req.body)
   let data=await lib.login(req.body)
   res.send(data)
 })
 
 app.get('/testToken', async function (req, res) {
-  console.log('/testToken')
+  //console.log('/testToken')
   let data=await lib.testToken(req)
   res.send(data)
 })
 
 app.post('/userInfoByToken', async function (req, res) {
-  console.log(req.headers.token)
+  //console.log(req.headers.token)
   let data=await lib.userInfoByToken(req.headers.token)
   res.send(data)
 })
 
 app.get('/Project', async function (req, res) {
-  console.log(requestIp.getClientIp(req))
+  //console.log(requestIp.getClientIp(req))
   let data=await lib.getProject()
   res.send(data)
 })
@@ -50,7 +50,7 @@ app.post('/Project', async function (req, res) {
   let data=""
   if(!await lib.userInfoByToken(req.headers.token)) data={success:false} 
   else data=await lib.postProject(req.body)
-  console.log(111,data)
+  //console.log(111,data)
   res.send(data)
 })
 
@@ -80,7 +80,7 @@ app.post('/Mail', async function (req, res) {
 })
 
 app.delete('/Mail', async function (req, res) {
-  console.log(req.query)
+  //console.log(req.query)
   let data=await lib.deleteMail(req.query)
   res.send(data)
 })
@@ -162,5 +162,5 @@ app.get('/limt',async function (req, res) {
 })
 
 app.listen(port,()=> {
-  console.log(port)
+  //console.log(port)
 })
